@@ -53,7 +53,7 @@ class RootActivity : AppCompatActivity(), IArticleView {
         val searchView = (menuItem.actionView as SearchView)
         searchView.queryHint = getString(R.string.article_search_placeholder)
 
-        //restore SearchView
+        //restore SearchView onCreateOptionsMenu
         if (viewModel.currentState.isSearch) {
             menuItem.expandActionView()
             searchView.setQuery(viewModel.currentState.searchQuery, false)
