@@ -35,4 +35,5 @@ class ViewBindingDelegate<T: ViewBinding>(
     }
 }
 
-inline fun <reified T: ViewBinding> AppCompatActivity.viewBinding(noinline initializer: (LayoutInflater) -> T) = ViewBindingDelegate(this, initializer)
+inline fun <reified T: ViewBinding> AppCompatActivity.viewBinding(noinline initializer: (LayoutInflater) -> T) =
+    ViewBindingDelegate(this, initializer)
