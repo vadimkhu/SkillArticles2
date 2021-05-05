@@ -1,6 +1,5 @@
 package ru.skillbranch.skillarticles.data.delegates
 
-import com.squareup.moshi.JsonAdapter
 import ru.skillbranch.skillarticles.data.PrefManager
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -16,4 +15,8 @@ class PrefObjDelegate<T>(
     override fun getValue(thisRef: PrefManager, property: KProperty<*>): T? {
         TODO("Not yet implemented")
     }
+}
+
+class JsonAdapter<T> {
+
 }
