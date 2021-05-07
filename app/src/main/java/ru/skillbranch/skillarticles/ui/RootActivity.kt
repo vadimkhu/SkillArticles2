@@ -6,6 +6,7 @@ import android.text.Selection
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -55,6 +56,7 @@ class RootActivity : AppCompatActivity(), IArticleView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         //setContentView(vb.root)
         setupToolbar()
         setupBottombar()
@@ -294,6 +296,7 @@ class RootActivity : AppCompatActivity(), IArticleView {
 
     override fun showSearchBar(resultsCount: Int, searchPosition: Int) {
         with (vb.bottombar) {
+            Log.e("RootActivity", "showSearchBar")
             setSearchState(true)
             setSearchInfo(resultsCount, searchPosition)
         }
@@ -302,6 +305,7 @@ class RootActivity : AppCompatActivity(), IArticleView {
 
     override fun hideSearchBar() {
         with (vb.bottombar) {
+            Log.e("RootActvity", "hideSearchBar")
             setSearchState(false)
         }
         vb.scroll.setMarginOptionally(bottom = dpToIntPx(0))

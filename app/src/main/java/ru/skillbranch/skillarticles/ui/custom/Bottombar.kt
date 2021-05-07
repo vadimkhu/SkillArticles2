@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
@@ -54,7 +55,8 @@ class Bottombar @JvmOverloads constructor(
     }
 
     fun setSearchState(isSearch: Boolean) {
-        if (isSearch == isSearchMode || isAttachedToWindow) return
+        Log.e("BOTTOMBAR", "isSearch = $isSearch; isSearchMode = $isSearchMode; isAttachedToView = $isAttachedToWindow")
+        if (isSearch == isSearchMode || !isAttachedToWindow) return
         isSearchMode = isSearch
         if (isSearchMode) animateShowSearch()
         else animateHideSearch()
