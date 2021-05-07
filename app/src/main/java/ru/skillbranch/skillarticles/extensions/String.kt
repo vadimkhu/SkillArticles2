@@ -11,8 +11,9 @@ fun String?.indexesOf(
             index = indexOf(substr, index, ignoreCase)
             if (index > -1) {
                 result.add(index)
-                index += substr.length
+                index++ //index += substr.length
             }
         }
     }
-    return result}
+    return result
+}
