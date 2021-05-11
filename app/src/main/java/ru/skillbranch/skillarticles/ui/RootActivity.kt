@@ -166,16 +166,19 @@ class RootActivity : AppCompatActivity(), IArticleView {
             btnBookmark.setOnClickListener { viewModel.handleBookmark() }
 
             btnResultUp.setOnClickListener {
+                Log.e("RootActivity", "btnResultUp setOnClickListener")
                 searchView.clearFocus()
                 viewModel.handleUpResult()
             }
 
             btnResultDown.setOnClickListener {
+                Log.e("RootActivity", "btnResultDown setOnClickListener")
                 searchView.clearFocus()
-                viewModel.handleDownText()
+                viewModel.handleDownResult()
             }
 
             btnSearchClose.setOnClickListener {
+                Log.e("RootActivity", "btnSearchClose.setOnClickListener")
                 viewModel.handleSearchMode(false)
                 invalidateOptionsMenu()
             }

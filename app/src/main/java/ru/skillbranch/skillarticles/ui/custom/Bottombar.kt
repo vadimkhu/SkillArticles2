@@ -55,7 +55,6 @@ class Bottombar @JvmOverloads constructor(
     }
 
     fun setSearchState(isSearch: Boolean) {
-        Log.e("BOTTOMBAR", "isSearch = $isSearch; isSearchMode = $isSearchMode; isAttachedToView = $isAttachedToWindow")
         if (isSearch == isSearchMode || !isAttachedToWindow) return
         isSearchMode = isSearch
         if (isSearchMode) animateShowSearch()
