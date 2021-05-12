@@ -166,13 +166,11 @@ class RootActivity : AppCompatActivity(), IArticleView {
             btnBookmark.setOnClickListener { viewModel.handleBookmark() }
 
             btnResultUp.setOnClickListener {
-                Log.e("RootActivity", "btnResultUp setOnClickListener")
                 searchView.clearFocus()
                 viewModel.handleUpResult()
             }
 
             btnResultDown.setOnClickListener {
-                Log.e("RootActivity", "btnResultDown setOnClickListener")
                 searchView.clearFocus()
                 viewModel.handleDownResult()
             }
@@ -214,10 +212,12 @@ class RootActivity : AppCompatActivity(), IArticleView {
 
         with (vb.tvTextContent) {
             textSize = if (data.isBigText) 18f else 14f
+            setText(
+                if (data.isLoadingContent) "loading..." else data.content.first(),
+                TextView.BufferType.SPANNABLE
+            )
+
             movementMethod = ScrollingMovementMethod()
-            val content = if (data.isLoadingContent) "loading..." else data.content.first()
-            if (text.toString() == content) return@with
-            setText(content, TextView.BufferType.SPANNABLE)
         }
 
         //bind toolbar

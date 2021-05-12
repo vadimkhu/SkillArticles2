@@ -142,20 +142,15 @@ class ArticleViewModel(private val articleId: String, savedStateHandle: SavedSta
     }
 
     override fun handleUpResult() {
-        Log.e("ArticleViewModel", "updateState ${currentState.searchPosition}")
         updateState {
             it.copy(searchPosition = it.searchPosition.dec())
         }
-        Log.e("ArticleViewModel", "updateState ${currentState.searchPosition}")
     }
 
     override fun handleDownResult() {
-        Log.e("ArticleViewModel", "updateState ${currentState.searchPosition}")
         updateState {
-            Log.e("ArticleViewModel", "${it.searchPosition}")
             it.copy(searchPosition = it.searchPosition.inc())
         }
-        Log.e("ArticleViewModel", "updateState ${currentState.searchPosition}")
     }
 }
 
