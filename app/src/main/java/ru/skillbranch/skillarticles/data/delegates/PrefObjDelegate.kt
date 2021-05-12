@@ -2,7 +2,7 @@ package ru.skillbranch.skillarticles.data.delegates
 
 import androidx.datastore.preferences.core.*
 import kotlinx.coroutines.Dispatchers
-import com.squareup.moshi.JsonAdapter
+//import com.squareup.moshi.JsonAdapter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -24,4 +24,8 @@ class PrefObjDelegate<T>(
     override fun setValue(thisRef: PrefManager, property: KProperty<*>, value: T?) {
         _storedValue = value
     }
+}
+
+class JsonAdapter<T> {
+
 }
