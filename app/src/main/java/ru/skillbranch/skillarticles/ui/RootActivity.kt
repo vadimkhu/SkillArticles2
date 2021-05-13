@@ -186,8 +186,8 @@ class RootActivity : AppCompatActivity(), IArticleView {
     override fun renderSubmenu(data: SubmenuData) {
         with (vbSubmenu) {
             switchMode.isChecked = data.isDarkMode
-            btnTextUp.isChecked = !data.isBigText
-            btnTextDown.isChecked = data.isBigText
+            btnTextDown.isChecked = !data.isBigText
+            btnTextUp.isChecked = data.isBigText
         }
 
         if (data.isShowMenu) vb.submenu.open()

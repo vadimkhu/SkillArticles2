@@ -44,6 +44,4 @@ class CheckableImageView @JvmOverloads constructor(
         Log.e("CheckableImageView", "click: ");
         toggle()
     }
-
-
 }
