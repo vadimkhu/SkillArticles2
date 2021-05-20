@@ -38,7 +38,7 @@ import ru.skillbranch.skillarticles.viewmodels.*
 class RootActivity : AppCompatActivity(), IArticleView {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     var viewModelFactory: ViewModelProvider.Factory = ViewModelFactory(this, "0")
-    private val viewModel: ArticleViewModel by viewModels { ViewModelFactory(this,"0") }
+    private val viewModel: ArticleViewModel by viewModels { viewModelFactory }
 
     private val vb: ActivityRootBinding by viewBinding(ActivityRootBinding::inflate)
 
@@ -57,7 +57,7 @@ class RootActivity : AppCompatActivity(), IArticleView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //setContentView(vb.root)
+        setContentView(vb.root)
         setupToolbar()
         setupBottombar()
         setupSubmenu()
