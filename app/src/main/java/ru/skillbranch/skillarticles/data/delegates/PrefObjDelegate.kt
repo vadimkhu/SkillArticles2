@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.skillbranch.skillarticles.data.PrefManager
+import ru.skillbranch.skillarticles.data.adapter.JsonAdapter
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -18,14 +19,24 @@ class PrefObjDelegate<T>(
     private var _storedValue: T? = null
 
     override fun getValue(thisRef: PrefManager, property: KProperty<*>): T {
+        if (_storedValue == null) {
+            val flowValue = thisRef.dataStore.data
+                .map { prefs ->
+                    prefs[createKey(property)]?.let(adapter::fromJson)
+                }
+            _storedValue = runBlocking(Dispatchers.IO) { flowValue.first() }
+        }
         return _storedValue!!
     }
 
     override fun setValue(thisRef: PrefManager, property: KProperty<*>, value: T?) {
         _storedValue = value
+        thisRef.scope.launch {
+            thisRef.dataStore.edit { prefs ->
+                prefs[createKey(property)] = value.let(adapter::toJson)
+            }
+        }
     }
-}
 
-class JsonAdapter<T> {
-
+    private fun createKey(property: KProperty<*>) = stringPreferencesKey(customKey ?: property.name)
 }

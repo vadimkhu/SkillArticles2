@@ -16,7 +16,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.zip
 import ru.skillbranch.skillarticles.App
+import ru.skillbranch.skillarticles.data.adapter.UserJsonAdapter
 import ru.skillbranch.skillarticles.data.delegates.PrefDelegate
+import ru.skillbranch.skillarticles.data.delegates.PrefObjDelegate
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -34,6 +36,8 @@ class PrefManager(context: Context = App.applicationContext()) {
     var testString by PrefDelegate("test")
 
     var testBoolean by PrefDelegate(false)
+
+    var testUser by PrefObjDelegate(UserJsonAdapter())
 
     private val errHandler = CoroutineExceptionHandler { _, th ->
         Log.e("PrefManager", "err ${th.message}")
