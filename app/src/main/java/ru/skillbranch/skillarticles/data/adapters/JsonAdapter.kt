@@ -1,4 +1,4 @@
-package ru.skillbranch.skillarticles.data.adapter
+package ru.skillbranch.skillarticles.data.adapters
 
 interface JsonAdapter<T> {
     fun toJson(obj: T?) : String

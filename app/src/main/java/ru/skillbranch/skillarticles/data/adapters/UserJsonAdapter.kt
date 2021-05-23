@@ -1,4 +1,4 @@
-package ru.skillbranch.skillarticles.data.adapter
+package ru.skillbranch.skillarticles.data.adapters
 
 import org.json.JSONObject
 import ru.skillbranch.skillarticles.data.local.User

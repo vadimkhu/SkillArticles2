@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.skillbranch.skillarticles.data.PrefManager
-import ru.skillbranch.skillarticles.data.adapter.JsonAdapter
+import ru.skillbranch.skillarticles.data.adapters.JsonAdapter
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
