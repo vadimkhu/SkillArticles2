@@ -2,21 +2,21 @@ package ru.skillbranch.skillarticles.extensions
 
 import ru.skillbranch.skillarticles.data.AppSettings
 import ru.skillbranch.skillarticles.data.ArticlePersonalInfo
+import ru.skillbranch.skillarticles.data.local.User
 import ru.skillbranch.skillarticles.viewmodels.ArticleState
 
-
-fun ArticleState.toAppSettings() : AppSettings {
-    return AppSettings(isDarkMode,isBigText)
+fun ArticleState.toAppSettings(): AppSettings {
+    return AppSettings(isDarkMode, isBigText)
 }
 
 fun ArticleState.toArticlePersonalInfo(): ArticlePersonalInfo {
     return ArticlePersonalInfo(isLike, isBookmark)
 }
 
-fun ArticleState.asMap(): Map<String, Any?> = mapOf (
+fun ArticleState.asMap(): Map<String, Any?> = mapOf(
     "isAuth" to isAuth,
     "isLoadingContent" to isLoadingContent,
-    "sLoadingReviews" to isLoadingReviews,
+    "isLoadingReviews" to isLoadingReviews,
     "isLike" to isLike,
     "isBookmark" to isBookmark,
     "isShowMenu" to isShowMenu,
@@ -34,5 +34,15 @@ fun ArticleState.asMap(): Map<String, Any?> = mapOf (
     "author" to author,
     "poster" to poster,
     "content" to content,
-    "reviews" to reviews
+    "reviews" to reviews,
 )
+
+fun User.asMap(): Map<String, Any?> = mapOf(
+    "id"  to id,
+    "name"  to name,
+    "avatar"  to avatar,
+    "rating"  to rating,
+    "respect"  to respect,
+    "about"  to about
+)
+

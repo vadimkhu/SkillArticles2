@@ -2,20 +2,9 @@ package ru.skillbranch.skillarticles.data.adapters
 
 import org.json.JSONObject
 import ru.skillbranch.skillarticles.data.local.User
+import ru.skillbranch.skillarticles.extensions.asMap
 
 class UserJsonAdapter : JsonAdapter<User> {
-    override fun toJson(obj: User?): String {
-        val user = obj ?: return ""
-        return JSONObject().apply {
-            put("id", user.id)
-            put("name", user.name)
-            putOpt("avatar", user.avatar)
-            put("rating", user.rating)
-            put("respect", user.respect)
-            putOpt("about", user.about)
-        }.toString()
-    }
-
     override fun fromJson(json: String): User? {
         val json = JSONObject(json)
         return User(
@@ -26,5 +15,10 @@ class UserJsonAdapter : JsonAdapter<User> {
             respect = json.getInt("respect"),
             about = json.optString("about")
         )
+    }
+
+    override fun toJson(obj: User?): String {
+        val user = obj ?: return ""
+        return JSONObject(user.asMap()).toString()
     }
 }
