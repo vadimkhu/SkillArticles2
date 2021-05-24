@@ -41,7 +41,6 @@ class PrefManager(context: Context = App.applicationContext()) {
 
     private val errHandler = CoroutineExceptionHandler { _, th ->
         Log.e("PrefManager", "err ${th.message}")
-        // TODO handle error this
     }
 
     internal val scope = CoroutineScope(SupervisorJob() + errHandler)
