@@ -19,6 +19,7 @@ import ru.skillbranch.skillarticles.App
 import ru.skillbranch.skillarticles.data.adapters.UserJsonAdapter
 import ru.skillbranch.skillarticles.data.delegates.PrefDelegate
 import ru.skillbranch.skillarticles.data.delegates.PrefObjDelegate
+import ru.skillbranch.skillarticles.data.local.User
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
