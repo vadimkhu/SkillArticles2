@@ -23,7 +23,7 @@ class PrefObjDelegate<T>(
     ) : ReadWriteProperty<PrefManager, T?> {
         return object : ReadWriteProperty<PrefManager, T?> {
             private var _storedValue: T? = null
-            val key = createKey(prop)
+            val key = stringPreferencesKey(customKey ?: prop.name)
 
             override fun getValue(thisRef: PrefManager, property: KProperty<*>): T? {
                 if (_storedValue == null) {
@@ -31,7 +31,7 @@ class PrefObjDelegate<T>(
                         .map { prefs ->
                             prefs[key] ?: ""
                         }
-                    _storedValue = runBlocking {
+                    _storedValue = runBlocking(Dispatchers.IO) {
                         flowValue
                             .map { adapter.fromJson(it) }
                             .first()
@@ -48,8 +48,6 @@ class PrefObjDelegate<T>(
                     }
                 }
             }
-
-            private fun createKey(property: KProperty<*>) = stringPreferencesKey(customKey ?: property.name)
         }
     }
 }
