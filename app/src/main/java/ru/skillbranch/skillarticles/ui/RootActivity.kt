@@ -57,7 +57,7 @@ class RootActivity : AppCompatActivity(), IArticleView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(vb.root)
+        //setContentView(vb.root)
         setupToolbar()
         setupBottombar()
         setupSubmenu()
@@ -98,7 +98,7 @@ class RootActivity : AppCompatActivity(), IArticleView {
             }
 
         })
-        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.handleSearch(query)
                 return true
@@ -114,7 +114,7 @@ class RootActivity : AppCompatActivity(), IArticleView {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+    override fun onSaveInstanceState(outState: Bundle) {
         viewModel.saveState()
         super.onSaveInstanceState(outState)
     }
@@ -212,12 +212,10 @@ class RootActivity : AppCompatActivity(), IArticleView {
 
         with (vb.tvTextContent) {
             textSize = if (data.isBigText) 18f else 14f
-            setText(
-                if (data.isLoadingContent) "loading..." else data.content.first(),
-                TextView.BufferType.SPANNABLE
-            )
-
             movementMethod = ScrollingMovementMethod()
+            val content = if (data.isLoadingContent) "loading" else data.content.first()
+            if (text.toString() == content) return@with
+            setText(content, TextView.BufferType.SPANNABLE)
         }
 
         //bind toolbar
